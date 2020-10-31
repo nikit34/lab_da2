@@ -28,7 +28,7 @@ protected:
 		return node != nullptr ? node->height : 0;
 	}
 
-	int Balance(const TAvlNode* node) {
+	uint64_t Balance(const TAvlNode* node) {
 		return Height(node->left) - Height(node->right);
 	}
 
