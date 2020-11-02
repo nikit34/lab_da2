@@ -11,29 +11,32 @@ int main(int argc, char** argv) {
 	std::chrono::time_point<std::chrono::system_clock> start, end;
 
 	TAvl<int, int> t;
+	std::map<int, int> test_map;
 
 	int top = atoi(argv[1]);
 	for (int i = 0; i <= top; i++) {
 		t.Add(i, i);
+		test_map.insert({i, i});
 	}
-
-	std::map<int, int> test_map;
 
 	int time = 0;
 	int map_time = 0;
 
+	start = std::chrono::system_clock::now();
 	for (int i = 0; i <= 1000000; i++) {
-		start = std::chrono::system_clock::now();
 		t.Find(top);
-		end = std::chrono::system_clock::now();
-		time += std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
-
-		// map
-		start = std::chrono::system_clock::now();
-		test_map.find(top);
-		end = std::chrono::system_clock::now();
-		map_time += std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
 	}
+	end = std::chrono::system_clock::now();
+	time += std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+
+	// map
+	start = std::chrono::system_clock::now();
+	for (int i = 0; i <= 1000000; i++) {
+		test_map.find(top);
+	}
+	end = std::chrono::system_clock::now();
+	map_time += std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+
 	std::cout << "AVL TIME: " << time << "\nMAP TIME: " << map_time << std::endl;
 	return 0;
 }
