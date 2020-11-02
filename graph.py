@@ -6,9 +6,9 @@ import matplotlib
 
 df = pd.read_excel('benchmark.xlsx', 'Лист1', index_col=None, na_values=['NA'])
 
-x = df['test Find'][17:22]
-y1 = df['Time (ms)'][17:22]
-y2 = df['Unnamed: 3'][17:22]
+x = df['test Find'][1:6]
+y1 = df['Time (ms)'][1:6]
+y2 = df['Unnamed: 3'][1:6]
 
 y1_max = max(y1)
 y2_max = max(y2)
@@ -36,5 +36,5 @@ plt.xlabel("Counts Log2")
 plt.ylabel("Times (ms)")
 plt.legend()
 
-plt.savefig('testRemove.png')
+plt.savefig('testFind.png')
 plt.show()
